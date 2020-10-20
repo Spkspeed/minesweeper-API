@@ -32,6 +32,6 @@ public class SwaggerConfiguration {
                 "1.0",
                 "Public use",
                 new Contact("Development Team", "minesweeper.com", "minesweeper@mail.com"),
-                "Free", "", Collections.emptyList());
+                "Free License", "", Collections.emptyList());
     }
 }
