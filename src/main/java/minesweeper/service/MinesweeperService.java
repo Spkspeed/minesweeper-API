@@ -10,11 +10,13 @@ public class MinesweeperService {
     }
 
     // Set a square of the grid to show it
-    public void setSquareGrid(int col, int row) {
+    public boolean setSquareGrid(int col, int row) {
+        return mineGameGrid.setSquareGrid(col, row);
     }
 
     // Set a square of the grid to flag it
-    public void setFlagSquareGrid(int col, int row) {
+    public boolean setFlagSquareGrid(int col, int row) {
+        return mineGameGrid.setFlaggedSquareGrid(col, row);
     }
 
 }

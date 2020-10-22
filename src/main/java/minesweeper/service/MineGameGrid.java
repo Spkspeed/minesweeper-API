@@ -17,4 +17,29 @@ public class MineGameGrid {
         }
     }
 
+    public boolean setSquareGrid(int row, int col) {
+        if (verifyOutOfGrid(row, col)) {
+            return false;
+        } else {
+            gameGrid[row][col].setSquareVisible(true);
+            return true;
+        }
+    }
+
+    public boolean setFlaggedSquareGrid(int row, int col) {
+        if (verifyOutOfGrid(row, col)) {
+            return false;
+        } else {
+            gameGrid[row][col].setSquareVisible(true);
+            return true;
+        }
+    }
+
+    private boolean verifyOutOfGrid(int row, int col) {
+        if (row > GRID_ROWS || row < 0 || col > GRID_COLS || col < 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -13,17 +13,31 @@ public class MinesweeperServiceTest {
     MinesweeperService minesweeperService = new MinesweeperService();
 
     @Test
-    public void testStartGameShouldReturn() {
+    public void testStartGameShouldReturnTrue() {
         assertThat(minesweeperService.startGame(), equalTo(true));
     }
 
     @Test
-    public void testSetSquareGrid() {
-        fail("Should fail");
+    public void testSetSquareGridShouldReturnTrue() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setSquareGrid(2,2), equalTo(true));
     }
 
     @Test
-    public void testSetFlagSquareGrid() {
-        fail("Should fail");
+    public void testSetSquareGridOutofIndexShouldReturnFalse() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setSquareGrid(200,200), equalTo(false));
+    }
+
+    @Test
+    public void testSetFlagSquareGridShouldReturnTrue() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setFlagSquareGrid(2,2), equalTo(true));
+    }
+
+    @Test
+    public void testSetFlagSquareGridWithIncorrectValuesShouldReturnFalse() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setFlagSquareGrid(-1,0), equalTo(false));
     }
 }
