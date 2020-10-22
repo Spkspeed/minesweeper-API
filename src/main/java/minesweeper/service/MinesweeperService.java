@@ -2,8 +2,11 @@ package minesweeper.service;
 
 public class MinesweeperService {
 
-    // Starts a new game
-    public void startGame() {
+    MineGameGrid mineGameGrid;
+
+    public boolean startGame() {
+        mineGameGrid = new MineGameGrid();
+        return mineGameGrid == null ? false : true;
     }
 
     // Set a square of the grid to show it

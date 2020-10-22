@@ -10,8 +10,8 @@ public class MineGameGrid {
     private int totalMinesInGrid = 10;
 
     public MineGameGrid() {
-        for (int row = 1; row <= GRID_ROWS; row++) {
-            for (int col = 1; col <= GRID_COLS; col++) {
+        for (int row = 0; row < GRID_ROWS; row++) {
+            for (int col = 0; col < GRID_COLS; col++) {
                 gameGrid[row][col] = new MineSquare();
             }
         }

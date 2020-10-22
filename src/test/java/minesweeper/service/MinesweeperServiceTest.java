@@ -4,25 +4,24 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.fail;
-
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 public class MinesweeperServiceTest {
 
-    // Test Starts a new game
+    MinesweeperService minesweeperService = new MinesweeperService();
+
     @Test
-    public void testStartGame() {
-        fail("Should fail");
+    public void testStartGameShouldReturn() {
+        assertThat(minesweeperService.startGame(), equalTo(true));
     }
 
-    // Set a square of the grid to show it
     @Test
     public void testSetSquareGrid() {
         fail("Should fail");
     }
 
-    // Set a square of the grid to flag it
     @Test
     public void testSetFlagSquareGrid() {
         fail("Should fail");
