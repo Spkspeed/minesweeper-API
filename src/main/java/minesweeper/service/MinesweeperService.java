@@ -10,7 +10,7 @@ public class MinesweeperService {
     }
 
     // Set a square of the grid to show it
-    public boolean setSquareGrid(int col, int row) {
+    public int setSquareGrid(int col, int row) {
         return mineGameGrid.setSquareGrid(col, row);
     }
 

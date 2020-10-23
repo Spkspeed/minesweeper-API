@@ -10,6 +10,9 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 public class MinesweeperServiceTest {
 
+    private final int SELECTION_FULFILLED = 1;
+    private final int INCORRECT_SELECTION = 0;
+
     MinesweeperService minesweeperService = new MinesweeperService();
 
     @Test
@@ -20,13 +23,13 @@ public class MinesweeperServiceTest {
     @Test
     public void testSetSquareGridShouldReturnTrue() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setSquareGrid(2,2), equalTo(true));
+        assertThat(minesweeperService.setSquareGrid(2,2), equalTo(SELECTION_FULFILLED));
     }
 
     @Test
-    public void testSetSquareGridOutofIndexShouldReturnFalse() {
+    public void testSetSquareGridOutOfIndexShouldReturnFalse() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setSquareGrid(200,200), equalTo(false));
+        assertThat(minesweeperService.setSquareGrid(200,200), equalTo(INCORRECT_SELECTION));
     }
 
     @Test
@@ -36,7 +39,7 @@ public class MinesweeperServiceTest {
     }
 
     @Test
-    public void testSetFlagSquareGridWithIncorrectValuesShouldReturnFalse() {
+    public void testSetFlagSquareGridOutOfIndexShouldReturnFalse() {
         minesweeperService.startGame();
         assertThat(minesweeperService.setFlagSquareGrid(-1,0), equalTo(false));
     }
