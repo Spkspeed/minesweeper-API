@@ -5,22 +5,12 @@ package minesweeper.service;
  */
 public class MineSquare {
 
-    private Boolean squareVisible;
     private Boolean squareMined;
-    private Boolean squareFlagged;
+    private SquareState squareState;
 
     public MineSquare() {
-        squareVisible = false;
         squareMined = false;
-        squareFlagged = false;
-    }
-
-    public Boolean getSquareVisible() {
-        return squareVisible;
-    }
-
-    public void setSquareVisible(Boolean squareVisible) {
-        this.squareVisible = squareVisible;
+        squareState = SquareState.NOT_REVEALED;
     }
 
     public Boolean getSquareMined() {
@@ -31,12 +21,11 @@ public class MineSquare {
         this.squareMined = squareMined;
     }
 
-    public Boolean getSquareFlagged() {
-        return squareFlagged;
+    public SquareState getSquareState() {
+        return squareState;
     }
 
-    public void setSquareFlagged(Boolean squareFlagged) {
-        this.squareFlagged = squareFlagged;
+    public void setSquareState(SquareState squareState) {
+        this.squareState = squareState;
     }
-
 }

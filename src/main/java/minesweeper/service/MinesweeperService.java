@@ -10,13 +10,18 @@ public class MinesweeperService {
     }
 
     // Set a square of the grid to show it
-    public int setSquareGrid(int col, int row) {
-        return mineGameGrid.setSquareGrid(col, row);
+    public SelectionResult setSquareGridRevealed(int col, int row) {
+        return mineGameGrid.setSquareGrid(col, row, SquareState.REVEALED);
     }
 
-    // Set a square of the grid to flag it
-    public boolean setFlagSquareGrid(int col, int row) {
-        return mineGameGrid.setFlaggedSquareGrid(col, row);
+    // Set a square of the grid with red mark
+    public SelectionResult setRedMarkSquareGrid(int col, int row) {
+        return mineGameGrid.setSquareGrid(col, row, SquareState.RED_MARK);
+    }
+
+    // Set a square of the grid with question mark
+    public SelectionResult setQuestionMarkSquareGrid(int col, int row) {
+        return mineGameGrid.setSquareGrid(col, row, SquareState.QUESTION_MARK);
     }
 
     // Verifies if game over was provoked by mined square selected

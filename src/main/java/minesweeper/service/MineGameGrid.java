@@ -7,10 +7,6 @@ public class MineGameGrid {
     private final Integer GRID_ROWS = 20;
     private final Integer GRID_COLS = 20;
 
-    private final int SELECTION_FULFILLED = 1;
-    private final int GAME_OVER = -1;
-    private final int INCORRECT_SELECTION = 0;
-
     private boolean gameOver;
 
     private MineSquare[][] gameGrid = new MineSquare[GRID_ROWS][GRID_COLS];
@@ -44,31 +40,26 @@ public class MineGameGrid {
                 minesSet++;
             }
         }
-
     }
 
-    public int setSquareGrid(int row, int col) {
-        if (verifyOutOfGrid(row, col)) {
-            return INCORRECT_SELECTION;
+    public SelectionResult setSquareGrid(int row, int col, SquareState selectionType) {
+        if (verifyPositionOutOfGrid(row, col)) {
+            return SelectionResult.SELECTION_ERROR;
         } else {
-            gameGrid[row][col].setSquareVisible(true);
-            if(gameGrid[row][col].getSquareMined()) {
-               setGameOver(true);
+            if(selectionType == SquareState.REVEALED) {
+                gameGrid[row][col].setSquareState(selectionType);
+                if (gameGrid[row][col].getSquareMined()) {
+                    setGameOver(true);
+                }
+            } else {
+                gameGrid[row][col].setSquareState(selectionType);
             }
-            return SELECTION_FULFILLED;
+
+            return SelectionResult.SELECTION_OK;
         }
     }
 
-    public boolean setFlaggedSquareGrid(int row, int col) {
-        if (verifyOutOfGrid(row, col)) {
-            return false;
-        } else {
-            gameGrid[row][col].setSquareVisible(true);
-            return true;
-        }
-    }
-
-    private boolean verifyOutOfGrid(int row, int col) {
+    private boolean verifyPositionOutOfGrid(int row, int col) {
         if (row > GRID_ROWS || row < 0 || col > GRID_COLS || col < 0) {
             return true;
         }

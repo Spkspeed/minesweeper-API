@@ -10,9 +10,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 public class MinesweeperServiceTest {
 
-    private final int SELECTION_FULFILLED = 1;
-    private final int INCORRECT_SELECTION = 0;
-
     MinesweeperService minesweeperService = new MinesweeperService();
 
     @Test
@@ -23,33 +20,45 @@ public class MinesweeperServiceTest {
     @Test
     public void testSetSquareGridShouldReturnTrue() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setSquareGrid(2,2), equalTo(SELECTION_FULFILLED));
+        assertThat(minesweeperService.setSquareGridRevealed(2,2), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
     public void testSetSquareGridOutOfIndexShouldReturnFalse() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setSquareGrid(200,200), equalTo(INCORRECT_SELECTION));
+        assertThat(minesweeperService.setSquareGridRevealed(200,200), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
-    public void testSetFlagSquareGridShouldReturnTrue() {
+    public void testSetRedMarkSquareGridShouldReturnOk() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setFlagSquareGrid(2,2), equalTo(true));
+        assertThat(minesweeperService.setRedMarkSquareGrid(10,10), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
-    public void testSetFlagSquareGridOutOfIndexShouldReturnFalse() {
+    public void testSetQuestionMarkSquareShouldReturnOk() {
         minesweeperService.startGame();
-        assertThat(minesweeperService.setFlagSquareGrid(-1,0), equalTo(false));
+        assertThat(minesweeperService.setRedMarkSquareGrid(10,10), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
-    public void testSettingAllSquaresInGridShouldSetGameOver() {
+    public void testSetRedMarkSquareGridOutOfIndexShouldReturnError() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setRedMarkSquareGrid(-1,0), equalTo(SelectionResult.SELECTION_ERROR));
+    }
+
+    @Test
+    public void testSetQuestionMarkSquareGridOutOfIndexShouldReturnError() {
+        minesweeperService.startGame();
+        assertThat(minesweeperService.setRedMarkSquareGrid(-1,0), equalTo(SelectionResult.SELECTION_ERROR));
+    }
+
+    @Test
+    public void testSettingAllSquaresRevealedInGridShouldSetGameOver() {
         minesweeperService.startGame();
         for(int col = 0; col < 20; col++) {
             for(int row = 0; row < 20; row++) {
-                minesweeperService.setSquareGrid(col, row);
+                minesweeperService.setSquareGridRevealed(col, row);
             }
         }
         assertThat(minesweeperService.isGameOver(), equalTo(true));
