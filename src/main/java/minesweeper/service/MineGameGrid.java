@@ -32,7 +32,7 @@ public class MineGameGrid {
         int posY;
         int minesSet = 0;
 
-        while(minesSet < totalMinesInGrid) {
+        while (minesSet < totalMinesInGrid) {
             posX = rand.nextInt(rows);
             posY = rand.nextInt(cols);
             if (!gameGrid[posX][posY].getSquareMined()) {
@@ -46,10 +46,14 @@ public class MineGameGrid {
         if (verifyPositionOutOfGrid(row, col)) {
             return SelectionResult.SELECTION_ERROR;
         } else {
-            if(selectionType == SquareState.REVEALED) {
+            if (selectionType == SquareState.REVEALED) {
                 gameGrid[row][col].setSquareState(selectionType);
                 if (gameGrid[row][col].getSquareMined()) {
                     setGameOver(true);
+                } else {
+                    if(checkAdjacentSquaresHaveMines(row, col)) {
+                        showAdjacentSquares(row, col);
+                    }
                 }
             } else {
                 gameGrid[row][col].setSquareState(selectionType);
@@ -59,8 +63,46 @@ public class MineGameGrid {
         }
     }
 
+    private boolean checkAdjacentSquaresHaveMines(int row, int col) {
+        boolean isMined = false;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                int posX = row;
+                int posY = col;
+                if (i == 0 && j == 0) {
+                    continue;
+                } else {
+                    posX += j;
+                    posY += i;
+                    if(!verifyPositionOutOfGrid(posX, posY)) {
+                        isMined = gameGrid[posX][posY].getSquareMined();
+                    }
+                }
+            }
+        }
+        return isMined;
+    }
+
+    private void showAdjacentSquares(int row, int col) {
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                int posX = row;
+                int posY = col;
+                if (i == 0 && j == 0) {
+                    continue;
+                } else {
+                    posX += j;
+                    posY += i;
+                    if(!verifyPositionOutOfGrid(posX, posY)) {
+                        gameGrid[posX][posY].setSquareState(SquareState.REVEALED);
+                    }
+                }
+            }
+        }
+    }
+
     private boolean verifyPositionOutOfGrid(int row, int col) {
-        if (row > GRID_ROWS || row < 0 || col > GRID_COLS || col < 0) {
+        if (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0) {
             return true;
         }
         return false;
