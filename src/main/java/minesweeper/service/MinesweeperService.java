@@ -19,4 +19,8 @@ public class MinesweeperService {
         return mineGameGrid.setFlaggedSquareGrid(col, row);
     }
 
+    // Verifies if game over was provoked by mined square selected
+    public boolean isGameOver() {
+        return mineGameGrid.isGameOver();
+    }
 }

@@ -43,4 +43,16 @@ public class MinesweeperServiceTest {
         minesweeperService.startGame();
         assertThat(minesweeperService.setFlagSquareGrid(-1,0), equalTo(false));
     }
+
+    @Test
+    public void testSettingAllSquaresInGridShouldSetGameOver() {
+        minesweeperService.startGame();
+        for(int col = 0; col < 20; col++) {
+            for(int row = 0; row < 20; row++) {
+                minesweeperService.setSquareGrid(col, row);
+            }
+        }
+        assertThat(minesweeperService.isGameOver(), equalTo(true));
+    }
+
 }
