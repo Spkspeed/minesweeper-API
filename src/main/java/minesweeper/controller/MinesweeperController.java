@@ -14,55 +14,55 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "Minesweeper API basic services")
 public class MinesweeperController {
 
-    MinesweeperService minesweeperService;
+    MinesweeperService minesweeperService = new MinesweeperService();
 
     @GetMapping(path = "/test")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Basic test endpoint")
-    public String getTestAccess() throws Exception {
+    public String getTestAccess() {
         return "Test is ok";
     }
 
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new Game instance")
-    public String createGame() {
-        minesweeperService.createGame();
+    public String createGame(String user) {
+        minesweeperService.createGame(user);
         return "Ok";
     }
 
     @GetMapping(path = "/square-selection-reveal")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Selects an square in the grid for reveal it")
-    public SelectionResult setSquareGridRevealed(int col, int row) {
-        return minesweeperService.setSquareGridRevealed(col, row);
+    public SelectionResult setSquareGridRevealed(int col, int row, String user) {
+        return minesweeperService.setSquareGridRevealed(col, row, user);
     }
 
     @GetMapping(path = "/square-selection-red-mark")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Selects an square in the grid with red marking")
-    public SelectionResult setRedMarkSquareGrid(int col, int row) {
-        return minesweeperService.setRedMarkSquareGrid(col, row);
+    public SelectionResult setRedMarkSquareGrid(int col, int row, String user) {
+        return minesweeperService.setRedMarkSquareGrid(col, row, user);
     }
 
     @GetMapping(path = "/square-selection-question-mark")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Selects an square in the grid with question marking")
-    public SelectionResult setQuestionMarkSquareGrid(int col, int row) {
-        return minesweeperService.setQuestionMarkSquareGrid(col, row);
+    public SelectionResult setQuestionMarkSquareGrid(int col, int row, String user) {
+        return minesweeperService.setQuestionMarkSquareGrid(col, row, user);
     }
 
     @GetMapping(path = "/verify-game-over")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Verifies is game is over were set if mined square was revealed")
-    public boolean isGameOver() {
-        return minesweeperService.isGameOver();
+    public boolean isGameOver(String user) {
+        return minesweeperService.isGameOver(user);
     }
 
     @GetMapping(path = "/show-elapsed-time")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Basic test endpoint")
-    public long getElapsedTime() {
-        return (System.nanoTime() - minesweeperService.getElapsedTime());
+    public long getElapsedTime(String user) {
+        return (System.nanoTime() - minesweeperService.getElapsedTime(user));
     }
 }

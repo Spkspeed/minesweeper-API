@@ -4,36 +4,39 @@ import java.util.Random;
 
 public class MineGameGrid {
 
-    protected final Integer GRID_ROWS = 20;
-    protected final Integer GRID_COLS = 20;
+    protected Integer totalRows = 20;
+    protected Integer totalCols = 20;
+    protected Integer totalMinesInGrid = 10;
+
     private long elapsedTime;
     private boolean gameOver;
 
-    private MineSquare[][] gameGrid = new MineSquare[GRID_ROWS][GRID_COLS];
+    private MineSquare[][] gameGrid = new MineSquare[totalRows][totalCols];
 
-    protected int totalMinesInGrid = 10;
 
-    protected MineGameGrid(int totalMines) {
+    protected MineGameGrid(int rows, int cols, int totalMines) {
+        totalRows = rows;
+        totalCols = cols;
         totalMinesInGrid = totalMines;
         elapsedTime = System.nanoTime();
-        buildGameGrid();
+        initializeGameGrid();
     }
 
     public MineGameGrid() {
         elapsedTime = System.nanoTime();
-        buildGameGrid();
+        initializeGameGrid();
     }
 
-    private void buildGameGrid() {
+    private void initializeGameGrid() {
         gameOver = false;
 
-        for (int row = 0; row < GRID_ROWS; row++) {
-            for (int col = 0; col < GRID_COLS; col++) {
+        for (int row = 0; row < totalRows; row++) {
+            for (int col = 0; col < totalCols; col++) {
                 gameGrid[row][col] = new MineSquare();
             }
         }
 
-        setMines(GRID_ROWS, GRID_COLS);
+        setMines(totalRows, totalCols);
     }
 
     private void setMines(int rows, int cols) {
@@ -113,7 +116,7 @@ public class MineGameGrid {
     }
 
     protected boolean isPositionOutOfGrid(int row, int col) {
-        return (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0);
+        return (row > (totalRows - 1) || row < 0 || col > (totalCols - 1) || col < 0);
     }
 
     public boolean isGameOver() {
