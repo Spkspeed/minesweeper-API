@@ -4,7 +4,7 @@ public class MinesweeperService {
 
     MineGameGrid mineGameGrid;
 
-    public boolean startGame() {
+    public boolean createGame() {
         mineGameGrid = new MineGameGrid();
         return mineGameGrid == null ? false : true;
     }

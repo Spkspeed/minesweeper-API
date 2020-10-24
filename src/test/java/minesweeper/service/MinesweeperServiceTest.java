@@ -14,48 +14,48 @@ public class MinesweeperServiceTest {
 
     @Test
     public void testStartGameShouldReturnTrue() {
-        assertThat(minesweeperService.startGame(), equalTo(true));
+        assertThat(minesweeperService.createGame(), equalTo(true));
     }
 
     @Test
     public void testSetSquareGridShouldReturnTrue() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setSquareGridRevealed(2,2), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
     public void testSetSquareGridOutOfIndexShouldReturnFalse() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setSquareGridRevealed(200,200), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
     public void testSetRedMarkSquareGridShouldReturnOk() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setRedMarkSquareGrid(10,10), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
     public void testSetQuestionMarkSquareShouldReturnOk() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setRedMarkSquareGrid(10,10), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
     public void testSetRedMarkSquareGridOutOfIndexShouldReturnError() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setRedMarkSquareGrid(-1,0), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
     public void testSetQuestionMarkSquareGridOutOfIndexShouldReturnError() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         assertThat(minesweeperService.setRedMarkSquareGrid(-1,0), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
     public void testSettingAllSquaresRevealedInGridShouldSetGameOver() {
-        minesweeperService.startGame();
+        minesweeperService.createGame();
         for(int col = 0; col < 20; col++) {
             for(int row = 0; row < 20; row++) {
                 minesweeperService.setSquareGridRevealed(col, row);

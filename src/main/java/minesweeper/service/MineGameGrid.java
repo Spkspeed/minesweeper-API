@@ -111,10 +111,7 @@ public class MineGameGrid {
     }
 
     protected boolean isPositionOutOfGrid(int row, int col) {
-        if (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0) {
-            return true;
-        }
-        return false;
+        return (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0);
     }
 
     public boolean isGameOver() {
