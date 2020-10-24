@@ -33,30 +33,36 @@ public class MinesweeperController {
 
     @GetMapping(path = "/square-selection-reveal")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Basic test endpoint")
+    @ApiOperation(value = "Selects an square in the grid for reveal it")
     public SelectionResult setSquareGridRevealed(int col, int row) {
         return minesweeperService.setSquareGridRevealed(col, row);
     }
 
     @GetMapping(path = "/square-selection-red-mark")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Basic test endpoint")
+    @ApiOperation(value = "Selects an square in the grid with red marking")
     public SelectionResult setRedMarkSquareGrid(int col, int row) {
         return minesweeperService.setRedMarkSquareGrid(col, row);
     }
 
     @GetMapping(path = "/square-selection-question-mark")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Basic test endpoint")
+    @ApiOperation(value = "Selects an square in the grid with question marking")
     public SelectionResult setQuestionMarkSquareGrid(int col, int row) {
         return minesweeperService.setQuestionMarkSquareGrid(col, row);
     }
 
     @GetMapping(path = "/verify-game-over")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Basic test endpoint")
+    @ApiOperation(value = "Verifies is game is over were set if mined square was revealed")
     public boolean isGameOver() {
         return minesweeperService.isGameOver();
     }
 
+    @GetMapping(path = "/show-elapsed-time")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Basic test endpoint")
+    public long getElapsedTime() {
+        return (System.nanoTime() - minesweeperService.getElapsedTime());
+    }
 }

@@ -6,7 +6,7 @@ public class MineGameGrid {
 
     protected final Integer GRID_ROWS = 20;
     protected final Integer GRID_COLS = 20;
-
+    private long elapsedTime;
     private boolean gameOver;
 
     private MineSquare[][] gameGrid = new MineSquare[GRID_ROWS][GRID_COLS];
@@ -15,10 +15,12 @@ public class MineGameGrid {
 
     protected MineGameGrid(int totalMines) {
         totalMinesInGrid = totalMines;
+        elapsedTime = System.nanoTime();
         buildGameGrid();
     }
 
     public MineGameGrid() {
+        elapsedTime = System.nanoTime();
         buildGameGrid();
     }
 
@@ -121,4 +123,9 @@ public class MineGameGrid {
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
+
+    public long getElapsedTime() {
+        return elapsedTime;
+    }
+
 }

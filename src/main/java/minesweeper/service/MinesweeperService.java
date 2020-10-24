@@ -28,4 +28,10 @@ public class MinesweeperService {
     public boolean isGameOver() {
         return mineGameGrid.isGameOver();
     }
+
+    // Verifies if game over was provoked by mined square selected
+    public long getElapsedTime() {
+        return mineGameGrid.getElapsedTime();
+    }
+
 }
