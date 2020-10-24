@@ -26,8 +26,8 @@ public class MinesweeperController {
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new Game instance")
-    public String createGame(String user) {
-        minesweeperService.createGame(user);
+    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+        minesweeperService.createGame(user, rows, cols, totalMines);
         return "Ok";
     }
 
@@ -61,7 +61,7 @@ public class MinesweeperController {
 
     @GetMapping(path = "/show-elapsed-time")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Basic test endpoint")
+    @ApiOperation(value = "Shows the elapsed time of the game")
     public long getElapsedTime(String user) {
         return (System.nanoTime() - minesweeperService.getElapsedTime(user));
     }

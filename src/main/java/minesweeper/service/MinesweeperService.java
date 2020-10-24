@@ -6,13 +6,20 @@ public class MinesweeperService {
 
     protected HashMap<String, MineGameGrid> gameInstances = new HashMap();
 
-    public boolean createGame(String user) {
+    public void createGame(String user) {
         MineGameGrid mineGameGrid = new MineGameGridBuilder()
-                .setTotalMinesInGrid(10)
+                .setTotalMinesInGrid(20)
                 .setTotalCols(20).setTotalRows(20).build();
 
         gameInstances.put(user, mineGameGrid);
-        return true;
+    }
+
+    public void createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+        MineGameGrid mineGameGrid = new MineGameGridBuilder()
+                .setTotalMinesInGrid(totalMines)
+                .setTotalCols(cols).setTotalRows(rows).build();
+
+        gameInstances.put(user, mineGameGrid);
     }
 
     // Set a square of the grid to show it

@@ -1,12 +1,16 @@
 package minesweeper.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tomcat.util.json.JSONParser;
+
 import java.util.Random;
 
 public class MineGameGrid {
 
     protected Integer totalRows = 20;
     protected Integer totalCols = 20;
-    protected Integer totalMinesInGrid = 10;
+    protected Integer totalMinesInGrid = 100;
 
     private long elapsedTime;
     private boolean gameOver;
@@ -129,6 +133,13 @@ public class MineGameGrid {
 
     public long getElapsedTime() {
         return elapsedTime;
+    }
+
+    public String gameGridtoJson() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String result = objectMapper.writeValueAsString(gameGrid[1][1]);
+
+        return null;
     }
 
 }

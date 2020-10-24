@@ -13,11 +13,6 @@ public class MinesweeperServiceTest {
     MinesweeperService minesweeperService = new MinesweeperService();
 
     @Test
-    public void testStartGameShouldReturnTrue() {
-        assertThat(minesweeperService.createGame("user"), equalTo(true));
-    }
-
-    @Test
     public void testSetSquareGridShouldReturnTrue() {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setSquareGridRevealed(2,2, "user"), equalTo(SelectionResult.SELECTION_OK));
