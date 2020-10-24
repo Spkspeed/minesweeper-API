@@ -4,20 +4,25 @@ import java.util.Random;
 
 public class MineGameGrid {
 
-    private final Integer GRID_ROWS = 20;
-    private final Integer GRID_COLS = 20;
+    protected final Integer GRID_ROWS = 20;
+    protected final Integer GRID_COLS = 20;
 
     private boolean gameOver;
 
     private MineSquare[][] gameGrid = new MineSquare[GRID_ROWS][GRID_COLS];
 
-    protected int totalMinesInGrid;
+    protected int totalMinesInGrid = 10;
 
-    public MineGameGrid() {
+    protected MineGameGrid(int totalMines) {
+        totalMinesInGrid = totalMines;
+        buildGameGrid();
     }
 
-    public MineGameGrid(int totalMines) {
-        totalMinesInGrid = totalMines;
+    public MineGameGrid() {
+        buildGameGrid();
+    }
+
+    private void buildGameGrid() {
         gameOver = false;
 
         for (int row = 0; row < GRID_ROWS; row++) {
@@ -87,7 +92,7 @@ public class MineGameGrid {
         return isMined;
     }
 
-    protected void showAdjacentSquares(int row, int col) {
+    private void showAdjacentSquares(int row, int col) {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 int posX = row;
@@ -105,7 +110,7 @@ public class MineGameGrid {
         }
     }
 
-    private boolean isPositionOutOfGrid(int row, int col) {
+    protected boolean isPositionOutOfGrid(int row, int col) {
         if (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0) {
             return true;
         }
