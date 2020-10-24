@@ -11,9 +11,13 @@ public class MineGameGrid {
 
     private MineSquare[][] gameGrid = new MineSquare[GRID_ROWS][GRID_COLS];
 
-    private int totalMinesInGrid = 10;
+    protected int totalMinesInGrid;
 
     public MineGameGrid() {
+    }
+
+    public MineGameGrid(int totalMines) {
+        totalMinesInGrid = totalMines;
         gameOver = false;
 
         for (int row = 0; row < GRID_ROWS; row++) {
@@ -43,7 +47,7 @@ public class MineGameGrid {
     }
 
     public SelectionResult setSquareGrid(int row, int col, SquareState selectionType) {
-        if (verifyPositionOutOfGrid(row, col)) {
+        if (isPositionOutOfGrid(row, col)) {
             return SelectionResult.SELECTION_ERROR;
         } else {
             if (selectionType == SquareState.REVEALED) {
@@ -63,7 +67,7 @@ public class MineGameGrid {
         }
     }
 
-    private boolean checkAdjacentSquaresHaveMines(int row, int col) {
+    protected boolean checkAdjacentSquaresHaveMines(int row, int col) {
         boolean isMined = false;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
@@ -74,7 +78,7 @@ public class MineGameGrid {
                 } else {
                     posX += j;
                     posY += i;
-                    if(!verifyPositionOutOfGrid(posX, posY)) {
+                    if(!isPositionOutOfGrid(posX, posY)) {
                         isMined = gameGrid[posX][posY].getSquareMined();
                     }
                 }
@@ -83,7 +87,7 @@ public class MineGameGrid {
         return isMined;
     }
 
-    private void showAdjacentSquares(int row, int col) {
+    protected void showAdjacentSquares(int row, int col) {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 int posX = row;
@@ -93,7 +97,7 @@ public class MineGameGrid {
                 } else {
                     posX += j;
                     posY += i;
-                    if(!verifyPositionOutOfGrid(posX, posY)) {
+                    if(!isPositionOutOfGrid(posX, posY)) {
                         gameGrid[posX][posY].setSquareState(SquareState.REVEALED);
                     }
                 }
@@ -101,7 +105,7 @@ public class MineGameGrid {
         }
     }
 
-    private boolean verifyPositionOutOfGrid(int row, int col) {
+    private boolean isPositionOutOfGrid(int row, int col) {
         if (row > (GRID_ROWS - 1) || row < 0 || col > (GRID_COLS - 1) || col < 0) {
             return true;
         }
