@@ -1,39 +1,27 @@
 # minesweeper-API
-API test
-
-We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
-
-PLEASE DO NOT FORK THE REPOSITORY. WE NEED A PUBLIC REPOSITORY FOR THE REVIEW. 
 
 ## The Game
 Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
 
-## Show your work
-
-1.  Create a Public repository ( please dont make a pull request, clone the private repository and create a new plublic one on your profile)
-2.  Commit each step of your process so we can follow your thought process.
-
 ## What to build
 The following is a list of items (prioritized from most important to least important) we wish to see:
-* Design and implement  a documented RESTful API for the game (think of a mobile app for your API)
-* Implement an API client library for the API designed above. Ideally, in a different language, of your preference, to the one used for the API
-* When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat)
-* Ability to 'flag' a cell with a question mark or red flag
-* Detect when game is over
-* Persistence
-* Time tracking
-* Ability to start a new game and preserve/resume the old ones
-* Ability to select the game parameters: number of rows, columns, and mines
-* Ability to support multiple users/accounts
+* Design and implement  a documented RESTful API for the game (think of a mobile app for your API) - DONE - CREATE API DOCUMENTATION WITH SWAGGER
+* Implement an API client library for the API designed above. Ideally, in a different language, of your preference, to the one used for the API - PENDING - I THINK I DONT UNDERSTAND THIS ITEM YET, IS THE API CLIENT THE MAIN LOGIC CODE?
+* When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat) - DONE - NEED MORE TESTING
+* Ability to 'flag' a cell with a question mark or red flag - DONE
+* Detect when game is over - DONE
+* Persistence - PENDING
+* Time tracking - DONE
+* Ability to start a new game and preserve/resume the old ones - PENDING
+* Ability to select the game parameters: number of rows, columns, and mines - DONE
+* Ability to support multiple users/accounts - DONE
  
-## Deliverables we expect:
-* URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
-* Code in a public Github repo
-* README file with the decisions taken and important notes
+## The initial Design
 
-## Time Spent
-You need to fully complete the challenge. We suggest not spending more than 5 days total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
- 
-What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
+The development was focused using Java language with Swagger framework for Document the API which can be located in
+heroku url
 
-Please email your solution as soon as you have completed the challenge or the time is up.
+* In the beginning of creating the API Documentation I decided to use Swagger framework for document the API Controller but later I figured out that there was needed to use a different approach with another language and a separate project according to specifications.
+* The initial development was started using TDD methodology to keep a set of tests to verify the correct functionality of the basic actions.
+* The tests only verifies basic functionality
+* There is needed to start a full tests of the functionality which I will start once I finish the most important items.
