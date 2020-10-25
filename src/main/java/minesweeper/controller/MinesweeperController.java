@@ -23,9 +23,17 @@ public class MinesweeperController {
         return "Test is ok";
     }
 
+    @PostMapping(path = "/create-custom-game")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Creates a new customized Game instance by setting Rows, Cols and number of Mines")
+    public String createGame(String user) {
+        minesweeperService.createGame(user);
+        return "Ok";
+    }
+
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Creates a new Game instance")
+    @ApiOperation(value = "Creates a new Game instance using default values of rows = 20, cols = 20, totalMines = 10")
     public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
         minesweeperService.createGame(user, rows, cols, totalMines);
         return "Ok";
@@ -61,8 +69,8 @@ public class MinesweeperController {
 
     @GetMapping(path = "/show-elapsed-time")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Shows the elapsed time of the game")
+    @ApiOperation(value = "Shows the elapsed time of the game in seconds")
     public long getElapsedTime(String user) {
-        return (System.nanoTime() - minesweeperService.getElapsedTime(user));
+        return (System.currentTimeMillis() - minesweeperService.getElapsedTime(user))/1000;
     }
 }

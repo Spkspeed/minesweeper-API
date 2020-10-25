@@ -1,8 +1,5 @@
 package minesweeper.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Random;
 
 public class MineGameGrid {
@@ -14,24 +11,24 @@ public class MineGameGrid {
     private long elapsedTime;
     private boolean gameOver;
 
-    private MineSquare[][] gameGrid = new MineSquare[totalRows][totalCols];
-
+    private MineSquare[][] gameGrid;
 
     protected MineGameGrid(int rows, int cols, int totalMines) {
         totalRows = rows;
         totalCols = cols;
         totalMinesInGrid = totalMines;
-        elapsedTime = System.nanoTime();
+
         initializeGameGrid();
     }
 
     public MineGameGrid() {
-        elapsedTime = System.nanoTime();
         initializeGameGrid();
     }
 
     private void initializeGameGrid() {
+        elapsedTime = System.currentTimeMillis();
         gameOver = false;
+        gameGrid = new MineSquare[totalRows][totalCols];
 
         for (int row = 0; row < totalRows; row++) {
             for (int col = 0; col < totalCols; col++) {
