@@ -55,7 +55,7 @@ public class MinesweeperService {
         return mineGameGrid.getElapsedTime();
     }
 
-    private MineGameGrid getMineGameGridByUser(String user) throws MinesweeperException {
+    public MineGameGrid getMineGameGridByUser(String user) throws MinesweeperException {
         if(gameInstances.get(user) == null) {
             throw new  MinesweeperException("User not found in game list");
         }

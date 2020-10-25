@@ -3,6 +3,8 @@ package minesweeper.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import minesweeper.exception.MinesweeperException;
+import minesweeper.service.MineGameGrid;
+import minesweeper.service.MineSquare;
 import minesweeper.service.MinesweeperService;
 import minesweeper.service.SelectionResult;
 import org.springframework.http.HttpStatus;
@@ -78,5 +80,13 @@ public class MinesweeperController {
     @ApiOperation(value = "Restores a game grid instance by user")
     public void restoreGame(String user) throws MinesweeperException {
         minesweeperService.restoreGame(user);
+    }
+
+    @GetMapping(path = "/get-game-grid")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Restores a game grid instance by user")
+    public MineSquare[][] getGameGrid(String user) throws MinesweeperException {
+        MineGameGrid mineGameGrid = minesweeperService.getMineGameGridByUser(user);
+        return mineGameGrid.getGameGrid();
     }
 }
