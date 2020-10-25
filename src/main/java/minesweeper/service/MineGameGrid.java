@@ -150,9 +150,4 @@ public class MineGameGrid {
         return gameGrid;
     }
 
-    public String gameGridtoJson() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(this);
-    }
-
 }
