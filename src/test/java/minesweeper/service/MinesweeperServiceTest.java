@@ -13,43 +13,43 @@ public class MinesweeperServiceTest {
     MinesweeperService minesweeperService = new MinesweeperService();
 
     @Test
-    public void testSetSquareGridShouldReturnTrue() {
+    public void testSetSquareGridShouldReturnTrue() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setSquareGridRevealed(2,2, "user"), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
-    public void testSetSquareGridOutOfIndexShouldReturnFalse() {
+    public void testSetSquareGridOutOfIndexShouldReturnFalse() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setSquareGridRevealed(200,200, "user"), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
-    public void testSetRedMarkSquareGridShouldReturnOk() {
+    public void testSetRedMarkSquareGridShouldReturnOk() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setRedMarkSquareGrid(10,10, "user"), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
-    public void testSetQuestionMarkSquareShouldReturnOk() {
+    public void testSetQuestionMarkSquareShouldReturnOk() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setRedMarkSquareGrid(10,10, "user"), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
-    public void testSetRedMarkSquareGridOutOfIndexShouldReturnError() {
+    public void testSetRedMarkSquareGridOutOfIndexShouldReturnError() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setRedMarkSquareGrid(-1,0, "user"), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
-    public void testSetQuestionMarkSquareGridOutOfIndexShouldReturnError() {
+    public void testSetQuestionMarkSquareGridOutOfIndexShouldReturnError() throws Exception {
         minesweeperService.createGame("user");
         assertThat(minesweeperService.setRedMarkSquareGrid(-1,0, "user"), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test
-    public void testSettingAllSquaresRevealedInGridShouldSetGameOver() {
+    public void testSettingAllSquaresRevealedInGridShouldSetGameOver() throws Exception {
         minesweeperService.createGame("user");
         for(int col = 0; col < 20; col++) {
             for(int row = 0; row < 20; row++) {
