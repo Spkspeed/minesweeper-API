@@ -2,7 +2,6 @@ package minesweeper.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.tomcat.util.json.JSONParser;
 
 import java.util.Random;
 
@@ -69,7 +68,7 @@ public class MineGameGrid {
                 if (gameGrid[row][col].getSquareMined()) {
                     setGameOver(true);
                 } else {
-                    if(checkAdjacentSquaresHaveMines(row, col)) {
+                    if (checkAdjacentSquaresHaveMines(row, col)) {
                         showAdjacentSquares(row, col);
                     }
                 }
@@ -92,7 +91,7 @@ public class MineGameGrid {
                 } else {
                     posX += j;
                     posY += i;
-                    if(!isPositionOutOfGrid(posX, posY)) {
+                    if (!isPositionOutOfGrid(posX, posY)) {
                         isMined = gameGrid[posX][posY].getSquareMined();
                     }
                 }
@@ -135,11 +134,25 @@ public class MineGameGrid {
         return elapsedTime;
     }
 
-    public String gameGridtoJson() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String result = objectMapper.writeValueAsString(gameGrid[1][1]);
+    public Integer getTotalRows() {
+        return totalRows;
+    }
 
-        return null;
+    public Integer getTotalCols() {
+        return totalCols;
+    }
+
+    public Integer getTotalMinesInGrid() {
+        return totalMinesInGrid;
+    }
+
+    public MineSquare[][] getGameGrid() {
+        return gameGrid;
+    }
+
+    public String gameGridtoJson() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(this);
     }
 
 }

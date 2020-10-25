@@ -14,7 +14,7 @@ public class SweeperGridStore {
 
     String user;
 
-    String GameGridStored;
+    String gameGridStored;
 
     public Integer getId() {
         return id;
@@ -33,10 +33,10 @@ public class SweeperGridStore {
     }
 
     public String getGameGridStored() {
-        return GameGridStored;
+        return gameGridStored;
     }
 
     public void setGameGridStored(String gameGridStored) {
-        GameGridStored = gameGridStored;
+        this.gameGridStored = gameGridStored;
     }
 }

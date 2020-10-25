@@ -17,14 +17,14 @@ public class MinesweeperPersistService {
         sweeperGridRepository.save(sweeperGridStore);
     }
 
+    /* TO DO Load game*/
     public MineGameGrid loadGame(String user) {
         SweeperGridStore sweeperGridStore = sweeperGridRepository.findByUser(user);
-        MineGameGrid mineGameGrid = loadGrid(sweeperGridStore.getGameGridStored());
-        return mineGameGrid;
-    }
+        sweeperGridStore.getGameGridStored();
 
-    private MineGameGrid loadGrid(String gameGridStored) {
-        return null;
+        return new MineGameGridBuilder()
+                .setTotalMinesInGrid(20)
+                .setTotalCols(20).setTotalRows(20).build();
     }
 
 }
