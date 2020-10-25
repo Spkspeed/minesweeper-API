@@ -64,6 +64,7 @@ public class MineGameGrid {
                 gameGrid[row][col].setSquareState(selectionType);
                 if (gameGrid[row][col].getSquareMined()) {
                     setGameOver(true);
+                    return SelectionResult.GAME_OVER;
                 } else {
                     if (checkAdjacentSquaresHaveMines(row, col)) {
                         showAdjacentSquares(row, col);

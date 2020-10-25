@@ -25,23 +25,22 @@ public class MinesweeperController {
 
     @PostMapping(path = "/create-custom-game")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Creates a new customized Game instance by setting Rows, Cols and number of Mines")
-    public String createGame(String user) {
-        minesweeperService.createGame(user);
+    @ApiOperation(value = "Creates a new customized game instance by setting rows, cols and number of mines")
+    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+        minesweeperService.createGame(user, rows, cols, totalMines);
         return "Ok";
     }
 
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new Game instance using default values of rows = 20, cols = 20, totalMines = 10")
-    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
-        minesweeperService.createGame(user, rows, cols, totalMines);
+    public String createGame(String user) {
+        minesweeperService.createGame(user);
         return "Ok";
     }
-
     @GetMapping(path = "/square-selection-reveal")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Selects an square in the grid for reveal it")
+    @ApiOperation(value = "Selects an square in the grid for reveal it, will throw Game Over if mined square is revealed")
     public SelectionResult setSquareGridRevealed(int col, int row, String user) {
         return minesweeperService.setSquareGridRevealed(col, row, user);
     }
@@ -62,7 +61,7 @@ public class MinesweeperController {
 
     @GetMapping(path = "/verify-game-over")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Verifies is game is over were set if mined square was revealed")
+    @ApiOperation(value = "Verifies if game is over due to revealing a mined square")
     public boolean isGameOver(String user) {
         return minesweeperService.isGameOver(user);
     }
