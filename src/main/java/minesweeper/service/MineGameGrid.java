@@ -69,6 +69,9 @@ public class MineGameGrid {
                     if (checkAdjacentSquaresHaveMines(row, col)) {
                         showAdjacentSquares(row, col);
                     }
+                    if (verifyGameIsCompleted()) {
+                        return SelectionResult.GAME_COMPLETED;
+                    }
                 }
             } else {
                 gameGrid[row][col].setSquareState(selectionType);
@@ -76,6 +79,23 @@ public class MineGameGrid {
 
             return SelectionResult.SELECTION_OK;
         }
+    }
+
+    private boolean verifyGameIsCompleted() {
+        int squaresRevealed = 0;
+        for (int row = 0; row < totalRows; row++) {
+            for (int col = 0; col < totalCols; col++) {
+                if (gameGrid[row][col].getSquareState().equals(SquareState.REVEALED)) {
+                    squaresRevealed++;
+                }
+            }
+        }
+
+        if (squaresRevealed == ((totalCols * totalRows) - totalMinesInGrid)) {
+            return true;
+        }
+
+        return false;
     }
 
     protected boolean checkAdjacentSquaresHaveMines(int row, int col) {
@@ -108,7 +128,7 @@ public class MineGameGrid {
                 } else {
                     posX += j;
                     posY += i;
-                    if(!isPositionOutOfGrid(posX, posY)) {
+                    if (!isPositionOutOfGrid(posX, posY)) {
                         gameGrid[posX][posY].setSquareState(SquareState.REVEALED);
                     }
                 }

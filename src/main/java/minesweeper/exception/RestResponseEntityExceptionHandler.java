@@ -15,7 +15,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        String message = "Exception error";
+        String message = "Unknown exception error found";
         return handleExceptionInternal(ex, message,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
