@@ -63,6 +63,20 @@ public class MinesweeperController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Shows the elapsed time of the game in seconds")
     public long getElapsedTime(String user) throws MinesweeperException {
-        return (System.currentTimeMillis() - minesweeperService.getElapsedTime(user))/1000;
+        return (System.currentTimeMillis() - minesweeperService.getElapsedTime(user)) / 1000;
+    }
+
+    @GetMapping(path = "/save-game")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Saves current game using user as identifier")
+    public void saveGame(String user) throws MinesweeperException {
+        minesweeperService.saveGame(user);
+    }
+
+    @GetMapping(path = "/restore-game")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Restores a game grid instance by user")
+    public void restoreGame(String user) throws MinesweeperException {
+        minesweeperService.restoreGame(user);
     }
 }

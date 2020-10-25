@@ -27,6 +27,7 @@ heroku url
 * Wasted a lot of time figuring out a way to persist, decided to use json data instead of binary serialization old ways using H2 memory DB
 * The find adjacent squares algorithm seems as duplicated code, tried to make it recursively, but it didnt work well.
 
-## Deployed on Haroku as a Rest Service and Documented with Swagger
+
+## Deployed on Heroku as a Rest Service and Documented with Swagger
 https://minesweeper-api-game.herokuapp.com/swagger-ui.html
 

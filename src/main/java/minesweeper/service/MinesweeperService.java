@@ -1,10 +1,16 @@
 package minesweeper.service;
 
 import minesweeper.exception.MinesweeperException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
+@Service
 public class MinesweeperService {
+
+    @Autowired
+    MinesweeperPersistService minesweeperPersistService;
 
     protected HashMap<String, MineGameGrid> gameInstances = new HashMap();
 
@@ -57,4 +63,11 @@ public class MinesweeperService {
         return gameInstances.get(user);
     }
 
+    public void saveGame(String user) throws MinesweeperException {
+        minesweeperPersistService.saveGame(user, gameInstances.get(user));
+    }
+
+    public void restoreGame(String user) throws MinesweeperException {
+        gameInstances.put(user, minesweeperPersistService.loadGame(user));
+    }
 }
