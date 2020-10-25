@@ -1,9 +1,6 @@
 package minesweeper.repository.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class SweeperGridStore {
@@ -14,6 +11,7 @@ public class SweeperGridStore {
 
     String user;
 
+    @Lob
     String gameGridStored;
 
     public Integer getId() {

@@ -25,3 +25,4 @@ heroku url
 * The initial development was started using TDD methodology to keep a set of tests to verify the correct functionality of the basic actions.
 * The tests only verifies basic functionality
 * There is needed to start a full tests of the functionality which I will start once I finish the most important items.
+* Wasted a lot of time figuring out a way to persist, decided to use json data instead of binary serialization old ways using H2 memory DB
