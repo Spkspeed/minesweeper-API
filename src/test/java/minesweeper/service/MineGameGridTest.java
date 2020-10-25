@@ -31,4 +31,11 @@ public class MineGameGridTest {
         MineGameGrid mineGameGrid = new MineGameGrid();
         assertThat(mineGameGrid.isPositionOutOfGrid(mineGameGrid.totalRows + 100, mineGameGrid.totalCols + 100), equalTo(true));
     }
+
+    @Test
+    public void testMineGameGridCanConvertToJson() throws Exception {
+        MineGameGrid mineGameGrid = new MineGameGrid();
+        String result = mineGameGrid.gameGridtoJson();
+        assertThat(result, notNullValue());
+    }
 }
