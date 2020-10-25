@@ -22,7 +22,7 @@ public class MinesweeperController {
     @PostMapping(path = "/create-custom-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new customized game instance by setting rows, cols and number of mines")
-    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) throws MinesweeperException {
         minesweeperService.createGame(user, rows, cols, totalMines);
         return "Game created successfully";
     }
@@ -30,7 +30,7 @@ public class MinesweeperController {
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new Game instance using default values of rows = 20, cols = 20, totalMines = 10")
-    public String createGame(String user) {
+    public String createGame(String user) throws MinesweeperException {
         minesweeperService.createGame(user);
         return "Game created successfully";
     }

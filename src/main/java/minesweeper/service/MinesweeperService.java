@@ -14,7 +14,7 @@ public class MinesweeperService {
 
     protected HashMap<String, MineGameGrid> gameInstances = new HashMap();
 
-    public void createGame(String user) {
+    public void createGame(String user) throws MinesweeperException {
         MineGameGrid mineGameGrid = new MineGameGridBuilder()
                 .setTotalMinesInGrid(20)
                 .setTotalCols(20).setTotalRows(20).build();
@@ -22,7 +22,7 @@ public class MinesweeperService {
         gameInstances.put(user, mineGameGrid);
     }
 
-    public void createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+    public void createGame(String user, Integer rows, Integer cols, Integer totalMines) throws MinesweeperException {
         MineGameGrid mineGameGrid = new MineGameGridBuilder()
                 .setTotalMinesInGrid(totalMines)
                 .setTotalCols(cols).setTotalRows(rows).build();

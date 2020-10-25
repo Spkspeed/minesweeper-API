@@ -1,5 +1,7 @@
 package minesweeper.service;
 
+import minesweeper.exception.MinesweeperException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -10,7 +12,29 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 public class MinesweeperServiceTest {
 
-    MinesweeperService minesweeperService = new MinesweeperService();
+    MinesweeperService minesweeperService;
+
+    @Before
+    public void setUp() {
+        minesweeperService = new MinesweeperService();
+    }
+
+    @Test(expected = MinesweeperException.class)
+    public void testCreateGameWithInvalidMinesNumberShouldThrowException() throws Exception {
+        int rows = 10;
+        int cols = 10;
+        int totalMines = rows * cols * 10;
+         minesweeperService.createGame("user", rows, cols, totalMines);
+    }
+
+    @Test
+    public void testCreateGameWithInvalidValuesShouldThrowException() throws Exception {
+        int rows = 1000;
+        int cols = 1000;
+        int totalMines = 10010;
+        minesweeperService.createGame("user", rows, cols, totalMines);
+        assertThat(minesweeperService.setSquareGridRevealed(2,2, "user"), equalTo(SelectionResult.SELECTION_OK));
+    }
 
     @Test
     public void testSetSquareGridShouldReturnTrue() throws Exception {
@@ -60,14 +84,14 @@ public class MinesweeperServiceTest {
     }
 
     @Test
-    public void testTwoUserGameCreatedShouldReturnTwoInstances() {
+    public void testTwoUserGameCreatedShouldReturnTwoInstances() throws Exception {
         minesweeperService.createGame("user");
         minesweeperService.createGame("user2");
         assertThat(minesweeperService.gameInstances.size(), equalTo(2));
     }
 
     @Test
-    public void testUserGameCreatedTwiceShouldReturnOneInstance() {
+    public void testUserGameCreatedTwiceShouldReturnOneInstance() throws Exception {
         minesweeperService.createGame("user");
         minesweeperService.createGame("user");
         assertThat(minesweeperService.gameInstances.size(), equalTo(1));

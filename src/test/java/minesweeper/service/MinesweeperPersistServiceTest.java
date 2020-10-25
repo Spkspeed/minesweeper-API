@@ -1,5 +1,6 @@
 package minesweeper.service;
 
+import minesweeper.exception.MinesweeperException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class MinesweeperPersistServiceTest {
     MinesweeperPersistService minesweeperPersistService;
 
     @Test
-    public void testSaveGameShouldReturnNotThrowException() {
+    public void testSaveGameShouldReturnNotThrowException() throws MinesweeperException {
         MinesweeperService minesweeperService = new MinesweeperService();
         minesweeperService.createGame(USER_1);
         try {
@@ -33,7 +34,7 @@ public class MinesweeperPersistServiceTest {
     }
 
     @Test
-    public void testSavedGameCanBeRestored() {
+    public void testSavedGameCanBeRestored() throws MinesweeperException {
         MinesweeperService minesweeperService = new MinesweeperService();
         minesweeperService.createGame(USER_2);
         try {
@@ -49,7 +50,7 @@ public class MinesweeperPersistServiceTest {
     }
 
     @Test
-    public void testSavedCustomGameCanBeRestored() {
+    public void testSavedCustomGameCanBeRestored() throws MinesweeperException {
         MinesweeperService minesweeperService = new MinesweeperService();
         minesweeperService.createGame(USER_1, 10, 10 ,10);
 

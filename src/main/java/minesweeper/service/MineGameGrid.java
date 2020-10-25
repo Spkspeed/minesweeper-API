@@ -1,5 +1,7 @@
 package minesweeper.service;
 
+import minesweeper.exception.MinesweeperException;
+
 import java.util.Random;
 
 public class MineGameGrid {
@@ -13,10 +15,18 @@ public class MineGameGrid {
 
     private MineSquare[][] gameGrid;
 
-    protected MineGameGrid(int rows, int cols, int totalMines) {
+    protected MineGameGrid(int rows, int cols, int totalMines) throws MinesweeperException {
         totalRows = rows;
         totalCols = cols;
         totalMinesInGrid = totalMines;
+
+        if((totalRows * totalCols) > 1000000) {
+            throw new MinesweeperException("Max Size of grid reached");
+        }
+
+        if(totalMinesInGrid > totalRows * totalCols) {
+            throw new MinesweeperException("totalMines bigger than grid square size");
+        }
 
         initializeGameGrid();
     }

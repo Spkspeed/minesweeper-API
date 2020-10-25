@@ -1,21 +1,21 @@
 package minesweeper.service;
 
+import minesweeper.exception.MinesweeperException;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 public class MineGameGridTest {
 
     @Test
-    public void testAdjacentSquaresHaveMines() {
+    public void testAdjacentSquaresHaveMines() throws MinesweeperException {
         MineGameGrid mineGameGrid = new MineGameGrid(20, 20, 400);
         assertThat(mineGameGrid.checkAdjacentSquaresHaveMines(5, 5), equalTo(true));
     }
 
     @Test
-    public void testAdjacentSquaresDoNotHaveMines() {
+    public void testAdjacentSquaresDoNotHaveMines() throws MinesweeperException {
         MineGameGrid mineGameGrid = new MineGameGrid(20, 20, 0);
         assertThat(mineGameGrid.checkAdjacentSquaresHaveMines(5, 5), equalTo(false));
     }

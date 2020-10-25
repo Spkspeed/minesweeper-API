@@ -1,5 +1,7 @@
 package minesweeper.service;
 
+import minesweeper.exception.MinesweeperException;
+
 public class MineGameGridBuilder {
 
     protected Integer totalRows;
@@ -21,7 +23,7 @@ public class MineGameGridBuilder {
         return this;
     }
 
-    public MineGameGrid build() {
+    public MineGameGrid build() throws MinesweeperException {
         return new MineGameGrid(totalRows, totalCols, totalMinesInGrid);
     }
 
