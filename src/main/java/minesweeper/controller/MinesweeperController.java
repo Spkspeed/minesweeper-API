@@ -22,15 +22,17 @@ public class MinesweeperController {
     @PostMapping(path = "/create-custom-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new customized game instance by setting rows, cols and number of mines")
-    public void createGame(String user, Integer rows, Integer cols, Integer totalMines) {
+    public String createGame(String user, Integer rows, Integer cols, Integer totalMines) {
         minesweeperService.createGame(user, rows, cols, totalMines);
+        return "Game created successfully";
     }
 
     @PostMapping(path = "/create-game")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Creates a new Game instance using default values of rows = 20, cols = 20, totalMines = 10")
-    public void createGame(String user) {
+    public String createGame(String user) {
         minesweeperService.createGame(user);
+        return "Game created successfully";
     }
 
     @GetMapping(path = "/square-selection-reveal")
@@ -84,7 +86,7 @@ public class MinesweeperController {
 
     @GetMapping(path = "/get-game-grid")
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Restores a game grid instance by user")
+    @ApiOperation(value = "Returns the game grid of a current instance in Json format")
     public MineSquare[][] getGameGrid(String user) throws MinesweeperException {
         MineGameGrid mineGameGrid = minesweeperService.getMineGameGridByUser(user);
         return mineGameGrid.getGameGrid();
