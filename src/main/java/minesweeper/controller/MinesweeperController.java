@@ -67,7 +67,8 @@ public class MinesweeperController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Shows the elapsed time of the game in seconds")
     public long getElapsedTime(String user) throws MinesweeperException {
-        return (System.currentTimeMillis() - minesweeperService.getElapsedTime(user)) / 1000;
+        long timeElapsedInSeconds = (System.currentTimeMillis() - minesweeperService.getElapsedTime(user)) / 1000;
+        return  timeElapsedInSeconds;
     }
 
     @GetMapping(path = "/save-game")

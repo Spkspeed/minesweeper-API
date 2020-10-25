@@ -27,13 +27,30 @@ public class MinesweeperServiceTest {
          minesweeperService.createGame("user", rows, cols, totalMines);
     }
 
-    @Test
+    @Test(expected = MinesweeperException.class)
     public void testCreateGameWithInvalidValuesShouldThrowException() throws Exception {
         int rows = 1000;
-        int cols = 1000;
+        int cols = 1000000;
         int totalMines = 10010;
         minesweeperService.createGame("user", rows, cols, totalMines);
-        assertThat(minesweeperService.setSquareGridRevealed(2,2, "user"), equalTo(SelectionResult.SELECTION_OK));
+    }
+
+    @Test
+    public void testCreateGameAndSelectSquareReturnsGameCompleted() throws Exception {
+        int rows = 3;
+        int cols = 3;
+        int totalMines = 0;
+        minesweeperService.createGame("user", rows, cols, totalMines);
+        assertThat(minesweeperService.setSquareGridRevealed(1,1, "user"), equalTo(SelectionResult.GAME_COMPLETED));
+    }
+
+    @Test
+    public void testCreateGameAndSelectSquareReturnsGameOver() throws Exception {
+        int rows = 3;
+        int cols = 3;
+        int totalMines = 9;
+        minesweeperService.createGame("user", rows, cols, totalMines);
+        assertThat(minesweeperService.setSquareGridRevealed(1,1, "user"), equalTo(SelectionResult.GAME_OVER));
     }
 
     @Test
