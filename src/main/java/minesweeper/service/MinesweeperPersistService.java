@@ -47,5 +47,4 @@ public class MinesweeperPersistService {
             throw new MinesweeperException("Could not restore game");
         }
     }
-
 }

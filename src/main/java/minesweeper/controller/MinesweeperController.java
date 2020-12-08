@@ -92,4 +92,5 @@ public class MinesweeperController {
         MineGameGrid mineGameGrid = minesweeperService.getMineGameGridByUser(user);
         return mineGameGrid.getGameGrid();
     }
+
 }

@@ -16,7 +16,7 @@ public class MinesweeperService {
 
     public void createGame(String user) throws MinesweeperException {
         MineGameGrid mineGameGrid = new MineGameGridBuilder()
-                .setTotalMinesInGrid(20)
+                .setTotalMinesInGrid(200)
                 .setTotalCols(20).setTotalRows(20).build();
 
         gameInstances.put(user, mineGameGrid);
