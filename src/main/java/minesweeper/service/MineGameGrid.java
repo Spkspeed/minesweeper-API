@@ -121,6 +121,10 @@ public class MineGameGrid {
                     posY += i;
                     if (!isPositionOutOfGrid(posX, posY)) {
                         isMined = gameGrid[posX][posY].getSquareMined();
+                        if (isMined == true){
+                            i = 2;
+                            j = 2;
+                        }
                     }
                 }
             }

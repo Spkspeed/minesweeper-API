@@ -42,6 +42,13 @@ public class MinesweeperController {
         return minesweeperService.setSquareGridRevealed(col, row, user);
     }
 
+    @GetMapping(path = "/square-selection-not-reveal-mark")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Selects an square in the grid with not revealed marking will not set GameOver")
+    public SelectionResult setNotRevealedMarkSquareGrid(int col, int row, String user) throws MinesweeperException {
+        return minesweeperService.setNotRevealedMarkSquareGrid(col, row, user);
+    }
+
     @GetMapping(path = "/square-selection-red-mark")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Selects an square in the grid with red marking will not set GameOver")

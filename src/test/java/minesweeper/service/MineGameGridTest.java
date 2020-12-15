@@ -10,8 +10,8 @@ public class MineGameGridTest {
 
     @Test
     public void testAdjacentSquaresHaveMines() throws MinesweeperException {
-        MineGameGrid mineGameGrid = new MineGameGrid(20, 20, 400);
-        assertThat(mineGameGrid.checkAdjacentSquaresHaveMines(5, 5), equalTo(true));
+        MineGameGrid mineGameGrid = new MineGameGrid(3, 3, 9);
+        assertThat(mineGameGrid.checkAdjacentSquaresHaveMines(1, 1), equalTo(true));
     }
 
     @Test

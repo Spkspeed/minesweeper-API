@@ -45,6 +45,11 @@ public class MinesweeperService {
         return mineGameGrid.setSquareGrid(col, row, SquareState.QUESTION_MARK);
     }
 
+    public SelectionResult setNotRevealedMarkSquareGrid(int col, int row, String user) throws MinesweeperException {
+        MineGameGrid mineGameGrid = getMineGameGridByUser(user);
+        return mineGameGrid.setSquareGrid(col, row, SquareState.NOT_REVEALED);
+    }
+
     public boolean isGameOver(String user) throws MinesweeperException {
         MineGameGrid mineGameGrid = getMineGameGridByUser(user);
         return mineGameGrid.isGameOver();
