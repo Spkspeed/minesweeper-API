@@ -55,7 +55,10 @@ public class MinesweeperServiceTest {
 
     @Test
     public void testSetSquareGridShouldReturnTrue() throws Exception {
-        minesweeperService.createGame("user");
+        int rows = 3;
+        int cols = 3;
+        int totalMines = 0;
+        minesweeperService.createGame("user", rows, cols, totalMines);
         assertThat(minesweeperService.setSquareGridRevealed(2,2, "user"), equalTo(SelectionResult.SELECTION_OK));
     }
 
@@ -74,7 +77,7 @@ public class MinesweeperServiceTest {
     @Test
     public void testSetQuestionMarkSquareShouldReturnOk() throws Exception {
         minesweeperService.createGame("user");
-        assertThat(minesweeperService.setRedMarkSquareGrid(10,10, "user"), equalTo(SelectionResult.SELECTION_OK));
+        assertThat(minesweeperService.setQuestionMarkSquareGrid(10,10, "user"), equalTo(SelectionResult.SELECTION_OK));
     }
 
     @Test
@@ -86,7 +89,7 @@ public class MinesweeperServiceTest {
     @Test
     public void testSetQuestionMarkSquareGridOutOfIndexShouldReturnError() throws Exception {
         minesweeperService.createGame("user");
-        assertThat(minesweeperService.setRedMarkSquareGrid(-1,0, "user"), equalTo(SelectionResult.SELECTION_ERROR));
+        assertThat(minesweeperService.setQuestionMarkSquareGrid(-1,0, "user"), equalTo(SelectionResult.SELECTION_ERROR));
     }
 
     @Test

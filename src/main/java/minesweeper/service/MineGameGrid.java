@@ -20,11 +20,11 @@ public class MineGameGrid {
         totalCols = cols;
         totalMinesInGrid = totalMines;
 
-        if((totalRows * totalCols) > 1000000) {
+        if ((totalRows * totalCols) > 1000000) {
             throw new MinesweeperException("Max Size of grid reached");
         }
 
-        if(totalMinesInGrid > totalRows * totalCols) {
+        if (totalMinesInGrid > totalRows * totalCols) {
             throw new MinesweeperException("totalMines bigger than grid square size");
         }
 
@@ -109,7 +109,6 @@ public class MineGameGrid {
     }
 
     protected boolean checkAdjacentSquaresHaveMines(int row, int col) {
-        boolean isMined = false;
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 int posX = row;
@@ -120,16 +119,14 @@ public class MineGameGrid {
                     posX += j;
                     posY += i;
                     if (!isPositionOutOfGrid(posX, posY)) {
-                        isMined = gameGrid[posX][posY].getSquareMined();
-                        if (isMined == true){
-                            i = 2;
-                            j = 2;
+                        if (gameGrid[posX][posY].getSquareMined()) {
+                            return true;
                         }
                     }
                 }
             }
         }
-        return isMined;
+        return false;
     }
 
     private void showAdjacentSquares(int row, int col) {
