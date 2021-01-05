@@ -1,6 +1,8 @@
 package minesweeper.service;
 
 import minesweeper.exception.MinesweeperException;
+import minesweeper.exception.RestResponseEntityExceptionHandler;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,9 @@ public class MinesweeperService {
 
     @Autowired
     MinesweeperPersistService minesweeperPersistService;
+
+    Logger log = Logger.getLogger(MinesweeperService.class);
+
 
     protected HashMap<String, MineGameGrid> gameInstances = new HashMap();
 
@@ -69,6 +74,7 @@ public class MinesweeperService {
     }
 
     public void saveGame(String user) throws MinesweeperException {
+        log.debug("El problema es que devuelve: " + gameInstances.get(user));
         minesweeperPersistService.saveGame(user, gameInstances.get(user));
     }
 
