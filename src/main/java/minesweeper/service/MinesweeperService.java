@@ -74,8 +74,7 @@ public class MinesweeperService {
     }
 
     public void saveGame(String user) throws MinesweeperException {
-        log.debug("El problema es que devuelve: " + gameInstances.get(user));
-        log.debug("ERRORDSDASDS" + minesweeperPersistService);
+        log.debug("El problema es que devuelve: " + minesweeperPersistService);
         minesweeperPersistService.saveGame(user, gameInstances.get(user));
     }
 
