@@ -75,6 +75,8 @@ public class MinesweeperService {
 
     public void saveGame(String user) throws MinesweeperException {
         log.debug("El problema es que devuelve: " + minesweeperPersistService);
+        log.debug("El usuario es: " + user);
+        log.debug("Instancias del juego del usuario: " + gameInstances.get(user));
         minesweeperPersistService.saveGame(user, gameInstances.get(user));
     }
 
