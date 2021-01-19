@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-
+//es otra forma de levantar la aplicacion ademas de mvn spring-boot:run
 @Service
 public class MinesweeperPersistService {
 
