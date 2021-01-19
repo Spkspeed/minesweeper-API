@@ -1,7 +1,9 @@
 package minesweeper.exception;
 
-import minesweeper.service.MineGameGrid;
-import org.apache.log4j.Logger;
+
+import minesweeper.service.MinesweeperPersistService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +17,14 @@ import java.util.Optional;
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    Logger log = Logger.getLogger(RestResponseEntityExceptionHandler.class);
+    Logger logger = LoggerFactory.getLogger(RestResponseEntityExceptionHandler.class);
 
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         String message = "Unknown exception error found";
 
-        log.error("RuntimeException was executed", ex);
-        log.error(ex.getMessage());
+        logger.error("RuntimeException was executed", ex);
+        logger.error(ex.getMessage());
 
         return handleExceptionInternal(ex, message,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);

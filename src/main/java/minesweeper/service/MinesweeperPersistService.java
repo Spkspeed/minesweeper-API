@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import minesweeper.exception.MinesweeperException;
 import minesweeper.repository.SweeperGridRepository;
 import minesweeper.repository.model.SweeperGridStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,15 @@ public class MinesweeperPersistService {
     @Autowired
     SweeperGridRepository sweeperGridRepository;
 
+
+    Logger logger = LoggerFactory.getLogger(MinesweeperPersistService.class);
+
+
     public void saveGame(String user, MineGameGrid mineGameGrid) throws MinesweeperException {
+        logger.info("El problema es que devuelve: " );
+        logger.info("El usuario es: ");
+        logger.info("Instancias del juego del usuario: ");
+
         try {
             SweeperGridStore sweeperGridStore = new SweeperGridStore();
             sweeperGridStore.setUser(user);
